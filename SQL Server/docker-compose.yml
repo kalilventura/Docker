@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+#Configuration Sql Server
+  company.database:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    container_name: company.database
+    environment: 
+      ACCEPT_EULA: "Y"
+      SA_USER: "sa"
+      SA_PASSWORD: "sa"
+    ports:
+      - "1433:1433"
+    networks:
+      - database-network
+
+#Network for containers
+networks: 
+  database-network:
+    driver: bridge
