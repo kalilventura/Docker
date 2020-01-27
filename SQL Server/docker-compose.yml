@@ -1,20 +1,32 @@
-version: '3'
+version: "3"
 
 services:
-#Configuration Sql Server
-  database:
+  #Configuration Sql Server
+  mssql-database:
     image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
-    container_name: company.database
-    environment: 
+    container_name: mssql.database
+    environment:
       ACCEPT_EULA: "Y"
       SA_USER: "sa"
-      SA_PASSWORD: "sa"
+      SA_PASSWORD: "cz7YkLL09@!0*"
     ports:
       - "1433:1433"
     networks:
-      - database-network
+      - mssql-compose-network
+
+  #Configuration for Adminer
+  adminer-mssql:
+    image: adminer:latest
+    container_name: adminer.mssql.database
+    restart: always
+    ports:
+      - 8800:8080
+    networks:
+      - mssql-compose-network
+    depends_on:
+      - "mssql-database"
 
 #Network for containers
-networks: 
-  database-network:
+networks:
+  mssql-compose-network:
     driver: bridge
