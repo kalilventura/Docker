@@ -14,18 +14,6 @@ services:
     networks:
       - mssql-compose-network
 
-  #Configuration for Adminer
-  adminer-mssql:
-    image: adminer:latest
-    container_name: adminer.mssql.database
-    restart: always
-    ports:
-      - 8800:8080
-    networks:
-      - mssql-compose-network
-    depends_on:
-      - "mssql-database"
-
 #Network for containers
 networks:
   mssql-compose-network:
