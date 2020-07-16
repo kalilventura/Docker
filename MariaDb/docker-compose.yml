@@ -1,0 +1,19 @@
+version: "3.1"
+
+services:
+  database:
+    container_name: "mariadb"
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_USER: kalil
+      MYSQL_PASSWORD: kalil
+      MYSQL_ROOT_PASSWORD: root
+
+  adminer:
+    container_name: "adminer"
+    image: adminer
+    restart: always
+    depends_on: database
+    ports:
+      - 8080:8080
