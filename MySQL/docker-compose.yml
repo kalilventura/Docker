@@ -18,6 +18,9 @@ services:
       - "3306:3306"
     networks:
       - mysql-compose-network
+    volumes:
+      - ./dump:/docker-entrypoint-initdb.d
+      - database_volume:/var/lib/mysql
 
   #Configuration for Adminer
   adminer:
@@ -35,3 +38,6 @@ services:
 networks:
   mysql-compose-network:
     driver: bridge
+
+volumes:
+  database_volume:
