@@ -1,0 +1,15 @@
+services:
+  # username: admin password: admin
+  sonarqube:
+    image: sonarqube:latest
+    ports:
+      - 9000:9000
+    environment:
+      - "SONARQUBE_HOME=/opt/sonarqube"
+      - "SONARQUBE_SCANNER_HOME=/opt/sonarqube/extensions/plugins/sonar-scanner-plugin"
+    networks:
+      - sonarnet
+
+networks:
+  sonarnet:
+    driver: bridge
